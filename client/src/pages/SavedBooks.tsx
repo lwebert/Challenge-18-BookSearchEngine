@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Container, Card, Button, Row, Col } from 'react-bootstrap';
 
-import { getMe, deleteBook } from '../utils/API';
-import Auth from '../utils/auth';
-import { removeBookId } from '../utils/localStorage';
+import { getMe, deleteBook } from '../utilsOLD/API';
+import Auth from '../utilsOLD/auth';
+import { removeBookId } from '../utilsOLD/localStorage';
 import type { User } from '../models/User';
 
 const SavedBooks = () => {
