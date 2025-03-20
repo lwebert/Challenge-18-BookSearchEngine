@@ -5,7 +5,8 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { typeDefs, resolvers } from './schemas/index';
 import db from './config/connection.js';
-import { authenticateToken } from './services/auth';
+import { authenticateToken } from './utils/auth';
+
 
 const server = new ApolloServer({
 	typeDefs,
@@ -35,8 +36,6 @@ const startApolloServer = async () => {
 			res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 		});
 	}
-
-	db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 	app.listen(PORT, () => {
 		console.log(`API server running on port ${PORT}!`);
