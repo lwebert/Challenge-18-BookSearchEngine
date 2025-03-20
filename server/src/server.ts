@@ -1,11 +1,11 @@
 import express from 'express';
-import path from 'path'; //or from 'node:path' ?
+import path from 'node:path'; //or from 'node:path' ?
 import type { Request, Response } from 'express';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { typeDefs, resolvers } from './schemas/index';
 import db from './config/connection.js';
-import { authenticateToken } from './utils/auth';
+import { authenticateToken } from './services/auth';
 
 
 const server = new ApolloServer({

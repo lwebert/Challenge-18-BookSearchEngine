@@ -9,7 +9,7 @@ import {
   Row
 } from 'react-bootstrap';
 
-import Auth from '../utilsOLD/auth';
+import Auth from '../utils/auth';
 import { saveBook, searchGoogleBooks } from '../utilsOLD/API';
 import { saveBookIds, getSavedBookIds } from '../utilsOLD/localStorage';
 import type { Book } from '../models/Book';

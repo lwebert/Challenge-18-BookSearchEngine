@@ -1,39 +1,39 @@
-import { signToken, AuthenticationError } from '../utils/auth.js';
-import { User } from '../models/index.js';
+// import { signToken, AuthenticationError } from '../utils/auth.js';
+// import { User } from '../models/index.js';
 
-interface User {
-    _id: string;
-    username: string;
-    email: string;
-    password: string;
-    savedBooks: []
-}
+// interface User {
+//     _id: string;
+//     username: string;
+//     email: string;
+//     password: string;
+//     savedBooks: []
+// }
 
 // interface UserArgs {
 // 	userId: string;
 // 	username: string;
 // }
 
-interface AddUserArgs {
-    username: string;
-    email: string;
-    password: string;
-}
+// interface AddUserArgs {
+//     username: string;
+//     email: string;
+//     password: string;
+// }
 
-interface SaveBookArgs {
-    input: {
-        author: string[];
-        description: string;
-        title: string;
-        bookId: string;
-        image: string;
-        link: string;
-    }
-}
+// interface SaveBookArgs {
+//     input: {
+//         author: string[];
+//         description: string;
+//         title: string;
+//         bookId: string;
+//         image: string;
+//         link: string;
+//     }
+// }
 
-interface Context {
-    user?: User;
-}
+// interface Context {
+//     user?: User;
+// }
 
 const resolvers = {
 	Query: {
@@ -57,14 +57,14 @@ const resolvers = {
 	Mutation: {
 		// login: async (_parent: any, args: any) => {
 		// },
-		addUser: async (_parent: any, { username, email, password }: AddUserArgs): Promise<{ token: string; user: User }> => {
-			const user = await User.create({ username, email, password });
-			const token = signToken(user.username, user.password, user._id);
-			return { token, user };
-		},
+		// addUser: async (_parent: any, { username, email, password }: AddUserArgs): Promise<{ token: string; user: User }> => {
+		// 	const user = await User.create({ username, email, password });
+		// 	const token = signToken(user.username, user.password, user._id);
+		// 	return { token, user };
+		// },
 
-        saveBook: async (_parent: any, {input}: SaveBookArgs, context: Context)
-	},
+        // saveBook: async (_parent: any, {input}: SaveBookArgs, context: Context)
+	}
 };
 
 export default resolvers;
