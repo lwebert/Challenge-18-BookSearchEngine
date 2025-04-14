@@ -1,6 +1,6 @@
 import { signToken, AuthenticationError } from '../utils/auth.js';
 // import { Query, Mutation } from './typeDefs';
-import User from '../models/User';
+import User from '../models/User.js';
 
 interface LoginUserArgs {
 	email: string;

@@ -3,7 +3,7 @@ import type { ChangeEvent, FormEvent } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
 import { createUser } from '../utilsOLD/API';
-import Auth from '../utilsOLD/auth';
+import Auth from '../utils/auth';
 import type { User } from '../models/User';
 
 // biome-ignore lint/correctness/noEmptyPattern: <explanation>
