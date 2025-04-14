@@ -19,6 +19,8 @@ export const authenticateToken = ({ req }: { req: Request }) => {
 		token = token.split(' ').pop().trim();
 	}
 
+	console.log('Token: ', token)
+
 	if (!token) {
 		console.log('No token to authenticate.');
 		return req;

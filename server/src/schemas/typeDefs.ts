@@ -20,7 +20,7 @@ const typeDefs = `
 		link: String
 	}
 
-	type Auth = {
+	type Auth {
 		token: ID!
 		user: User
 	}
@@ -42,7 +42,7 @@ const typeDefs = `
 		login(email: String!, password: String!): Auth
 		addUser(username: String!, email: String!, password: String!): Auth
 		saveBook(input: SaveBookInput!): User
-		removeBook(bookId: ID!): User
+		removeBook(bookId: String!): User
 	}
 `
 
