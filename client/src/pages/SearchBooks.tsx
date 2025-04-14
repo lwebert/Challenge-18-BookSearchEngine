@@ -9,7 +9,7 @@ import { SAVE_BOOK } from '../utils/mutations';
 import { searchGoogleBooks } from '../utils/BookAPI';
 
 // import { saveBook, searchGoogleBooks } from '../utilsOLD/API';
-import { saveBookIds, getSavedBookIds } from '../utilsOLD/localStorage';
+import { saveBookIds, getSavedBookIds } from '../utils/localStorageBookId';
 import type { Book } from '../models/Book';
 import type { GoogleAPIBook } from '../models/GoogleAPIBook';
 
