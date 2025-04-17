@@ -1,5 +1,5 @@
-import { signToken, AuthenticationError } from '../utils/auth.js';
-// import { Query, Mutation } from './typeDefs';
+import { signToken } from '../utils/auth.js';
+import { AuthenticationError } from 'apollo-server';
 import User from '../models/User.js';
 
 interface LoginUserArgs {
@@ -8,9 +8,11 @@ interface LoginUserArgs {
 }
 
 interface AddUserArgs {
-	username: string;
-	email: string;
-	password: string;
+	input: {
+		username: string;
+		email: string;
+		password: string;
+	};
 }
 
 interface SaveBookArgs {
@@ -58,13 +60,31 @@ const resolvers = {
 			const token = signToken(user.username, user.email, user._id);
 			return { token, user };
 		},
-		addUser: async (
-			_parent: any,
-			{ username, email, password }: AddUserArgs
-		) => {
-			const user = await User.create({ username, email, password });
-			const token = signToken(user.username, user.email, user._id);
-			return { token, user };
+		addUser: async (_parent: any, { input }: AddUserArgs) => {
+			// console.log('resolvers input: ', input);
+			try {
+				const { username, email, password } = input;
+
+				const existing = await User.findOne({ email });
+				if (existing) {
+					console.warn(
+						'Registration attempt with existing email:',
+						email
+					);
+					throw new AuthenticationError('Email is already in use');
+				}
+
+				const user = await User.create({ username, email, password });
+				console.log('resolvers user: ', user);
+
+				const token = signToken(user.username, user.email, user._id);
+				console.log('resolvers token: ', token);
+
+				return { token, user };
+			} catch (err) {
+				console.error('Registration error:', err);
+				throw new Error('User registration failed');
+			}
 		},
 		saveBook: async (
 			_parent: any,
@@ -102,7 +122,7 @@ const resolvers = {
 				{ new: true }
 			);
 
-			return updatedUser; 
+			return updatedUser;
 		},
 	},
 };

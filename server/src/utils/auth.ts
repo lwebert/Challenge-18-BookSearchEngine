@@ -11,28 +11,30 @@ dotenv.config();
 // 	username: string;
 // 	email: string;
 // }
+const secretKey: any = process.env.JWT_SECRET_KEY || 'secret';
 
 export const authenticateToken = ({ req }: { req: Request }) => {
+	console.log('req: ', req);
 	let token = req.body.token || req.query.token || req.headers.authorization;
 
 	if (req.headers.authorization) {
 		token = token.split(' ').pop().trim();
 	}
 
-	console.log('Token: ', token)
+	// console.log('Token: ', token);
 
 	if (!token) {
 		console.log('No token to authenticate.');
 		return req;
 	}
 
-	try {
-		const { data }: any = jwt.verify(
-			token,
-			process.env.JWT_SECRET_KEY || '',
-			{ maxAge: '2hr' }
-		);
+	// const secretKey: any = process.env.JWT_SECRET_KEY || '';
+	console.log('JWT_SECRET_KEY:', process.env.JWT_SECRET_KEY);
+	console.log('JWT_SECRET_KEY:', secretKey);
 
+	try {
+		const { data }: any = jwt.verify(token, secretKey, { maxAge: '2hr' });
+		console.log('data: ', data);
 		req.user = data;
 	} catch (err) {
 		console.log('Invalid token. ', err);
@@ -62,7 +64,7 @@ export const authenticateToken = ({ req }: { req: Request }) => {
 
 export const signToken = (username: string, email: string, _id: unknown) => {
 	const payload = { username, email, _id };
-	const secretKey: any = process.env.JWT_SECRET_KEY || '';
+	// const secretKey: any = process.env.JWT_SECRET_KEY || 'secret';
 
 	return jwt.sign({ data: payload }, secretKey, { expiresIn: '2h' });
 };
