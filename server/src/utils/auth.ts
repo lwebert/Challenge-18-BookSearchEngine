@@ -14,7 +14,7 @@ dotenv.config();
 const secretKey: any = process.env.JWT_SECRET_KEY || 'secret';
 
 export const authenticateToken = ({ req }: { req: Request }) => {
-	console.log('req: ', req);
+	// console.log('req: ', req);
 	let token = req.body.token || req.query.token || req.headers.authorization;
 
 	if (req.headers.authorization) {

@@ -61,7 +61,7 @@ const resolvers = {
 			return { token, user };
 		},
 		addUser: async (_parent: any, { input }: AddUserArgs) => {
-			// console.log('resolvers input: ', input);
+			console.log('resolvers input: ', input);
 			try {
 				const { username, email, password } = input;
 
