@@ -12,7 +12,7 @@ import { removeBookId } from '../utils/localStorageBookId';
 import type { User } from '../models/User';
 
 const SavedBooks = () => {
-	const { loading, data } = useQuery(GET_ME);
+	const { loading, data, error } = useQuery(GET_ME);
 	const [removeBook] = useMutation(REMOVE_BOOK);
 
 	// const [userData, setUserData] = useState<User>({
@@ -23,6 +23,8 @@ const SavedBooks = () => {
 	// });
 
 	const userData: User = data?.me || {};
+	
+	const savedBooks = userData?.savedBooks || []
 
 	// use this to determine if `useEffect()` hook needs to run again
 	// const userDataLength = Object.keys(userData).length;
