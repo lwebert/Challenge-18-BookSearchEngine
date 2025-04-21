@@ -9,11 +9,6 @@ interface ExtendedJwt extends JwtPayload {
 	};
 }
 
-// interface UserToken {
-// 	name: string;
-// 	exp: number;
-// }
-
 // create a new class to instantiate for a user
 class AuthService {
 	// get user data

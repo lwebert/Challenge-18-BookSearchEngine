@@ -1,6 +1,3 @@
-// import { ObjectId } from 'mongoose';
-// import { UserDocument } from '../models/User';
-// import { BookDocument } from '../models/Book';
 
 const typeDefs = `
 	type User {

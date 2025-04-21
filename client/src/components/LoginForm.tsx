@@ -6,15 +6,12 @@ import { useMutation } from '@apollo/client';
 
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-// import type { User } from '../models/User';
 
 // biome-ignore lint/correctness/noEmptyPattern: <explanation>
 const LoginForm = ({}: { handleModalClose: () => void }) => {
 	const [formData, setFormData] = useState({
-		// username: '',
 		email: '',
 		password: '',
-		// savedBooks: [],
 	});
 
 	const [validated] = useState(false);
@@ -44,21 +41,15 @@ const LoginForm = ({}: { handleModalClose: () => void }) => {
 			if (error || !data || !data.login || !data.login.token) {
 				throw new Error('something went wrong!');
 			}
-
-			// const { token } = await data.json();
-
 			Auth.login(data?.login?.token);
-			// handleModalClose();
 		} catch (err) {
 			console.error(err);
 			setShowAlert(true);
 		}
 
 		setFormData({
-			// username: '',
 			email: '',
 			password: '',
-			// savedBooks: [],
 		});
 	};
 
